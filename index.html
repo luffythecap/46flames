@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>49frames</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  
+</head>
+<body class="bg-gray-100 flex-col justify-center items-center h-screen w-auto">
+
+  <!-- Navbar -->
+   <header class="absolute inset-x-0 top-0 z-50">
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 md:w-3/4 lg:w-1/2 bg-white shadow-lg rounded-full px-4 lg:py-4 py-2 lg:px-6 flex justify-between lg:justify-end items-center">
+    
+        <!-- Logo (Left for Desktop) -->
+        <a href="#" class="lg:absolute lg:left-6">
+            <img src="/images/logo3-removebg-preview.png" alt="Logo" class="h-14 lg:h-18 w-auto">
+        </a>
+          
+        <!-- Desktop Menu (Right Aligned) -->
+        <ul class="hidden lg:flex mt-1 space-x-6 items-center">
+            <li><a href="#" class="hover:text-red-800 text-xl">Home</a></li>
+            
+            <li class="relative group">
+              <a href="#" class="hover:text-red-800 flex items-center text-xl">
+                Service 
+                <span class="ml-1">
+                  <!-- Custom SVG Arrow -->
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="h-5 w-5 fill-current text-gray-600 transition-transform group-hover:rotate-180 hover:text-red-800">
+                    <path d="M64 .3C28.7.3 0 28.8 0 64s28.7 63.7 64 63.7 64-28.5 64-63.7S99.3.3 64 .3zm0 121C32.2 121.3 6.4 95.7 6.4 64 6.4 32.3 32.2 6.7 64 6.7s57.6 25.7 57.6 57.3c0 31.7-25.8 57.3-57.6 57.3zm21.7-63.2L70.4 70.3V41.7c0-2.2-2.3-3.2-4.4-3.2h-4c-2.2 0-3.9 1.8-3.9 3.9v28.4L42.3 58.1c-2.2 0-3.9 1.8-3.9 3.9v7.1L64 95.8l25.6-26.7V62c0-2.2-1.8-3.9-3.9-3.9z"/>
+                  </svg>
+                </span>
+              </a>
+              <!-- Dropdown for Desktop -->
+              <ul class="absolute left-0 mt-5 hidden w-40 bg-white shadow-lg rounded-lg group-hover:block  hover:rounded-lg border border-gray-200 text-xl">
+                <li><a href="#what-we-do" class="block px-4 py-2 hover:bg-gray-100">what we do</a></li>
+                <li><a href="#animated-section" class="block px-4 py-2 hover:bg-gray-100">why to choose us</a></li>
+              </ul>
+            </li>
+            <li><a href="#footer" class="hover:text-red-800 text-xl">Contact</a></li>
+    
+            <!-- Book a Call Button (Desktop Only) -->
+            <li>
+              <a href="#" class="bg-red-700 text-white px-4 py-2 rounded-full hover:bg-red-900 hover:shadow-lg transition text-xl">
+                Book a Call
+              </a>
+            </li>
+        </ul>
+    
+        <!-- Mobile Menu Button (Visible in Mobile) -->
+        <div class="lg:hidden">
+          <btn id="menu-btn" type="button" class="focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mt-1 p-2 rounded-full bg-black text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          </btn>
+        </div>
+    </nav>
+    
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden lg:hidden"></div>
+
+<!-- Mobile Side Menu -->
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-100 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+    <btn id="close-menu" class="absolute top-6 right-6 bg-black p-2 rounded-full text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0,0,256,256">
+          <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M7,4c-0.25587,0 -0.51203,0.09747 -0.70703,0.29297l-2,2c-0.391,0.391 -0.391,1.02406 0,1.41406l7.29297,7.29297l-7.29297,7.29297c-0.391,0.391 -0.391,1.02406 0,1.41406l2,2c0.391,0.391 1.02406,0.391 1.41406,0l7.29297,-7.29297l7.29297,7.29297c0.39,0.391 1.02406,0.391 1.41406,0l2,-2c0.391,-0.391 0.391,-1.02406 0,-1.41406l-7.29297,-7.29297l7.29297,-7.29297c0.391,-0.39 0.391,-1.02406 0,-1.41406l-2,-2c-0.391,-0.391 -1.02406,-0.391 -1.41406,0l-7.29297,7.29297l-7.29297,-7.29297c-0.1955,-0.1955 -0.45116,-0.29297 -0.70703,-0.29297z"></path></g></g>
+      </svg>
+    </btn>
+    <ul class="mt-20 space-y-4 text-center">
+      <li>
+          <a href="#" class="block px-10 py-2 rounded-lg text-xl hover:text-blue-500 flex items-center justify-between">
+              <div class="h-16 w-16  border  flex items-center justify-center rounded-lg shadow-lg mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30" class="h-6 w-6 ">
+                  <path d="M 15 2 A 1 1 0 0 0 14.300781 2.2851562 L 3.3925781 11.207031 A 1 1 0 0 0 3.3554688 11.236328 L 3.3183594 11.267578 L 3.3183594 11.269531 A 1 1 0 0 0 3 12 A 1 1 0 0 0 4 13 L 5 13 L 5 24 C 5 25.105 5.895 26 7 26 L 23 26 C 24.105 26 25 25.105 25 24 L 25 13 L 26 13 A 1 1 0 0 0 27 12 A 1 1 0 0 0 26.681641 11.267578 L 26.666016 11.255859 A 1 1 0 0 0 26.597656 11.199219 L 25 9.8925781 L 25 6 C 25 5.448 24.552 5 24 5 L 23 5 C 22.448 5 22 5.448 22 6 L 22 7.4394531 L 15.677734 2.2675781 A 1 1 0 0 0 15 2 z M 18 15 L 22 15 L 22 23 L 18 23 L 18 15 z"></path>
+                </svg>
+              </div>
+              Home        
+          </a>
+      </li>
+      <li class="relative">
+        <button id="mobile-dropdown-btn" class="w-full ml-1 text-left px-4 py-2  text-xl rounded-lg flex items-center justify-center">
+          <div class="h-16 w-16 border flex items-center justify-center rounded-lg shadow-lg mr-2">
+            <!-- Service SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24" class="h-6 w-6">
+              <path fill="none" d="M0 0h24v24H0z"/>
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+          </div>
+          Service        
+          <span id="mobile-arrow" class="ml-1 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="h-7 w-7 fill-current text-gray-600">
+              <path d="M64 .3C28.7.3 0 28.8 0 64s28.7 63.7 64 63.7 64-28.5 64-63.7S99.3.3 64 .3zm0 121C32.2 121.3 6.4 95.7 6.4 64 6.4 32.3 32.2 6.7 64 6.7s57.6 25.7 57.6 57.3c0 31.7-25.8 57.3-57.6 57.3zm21.7-63.2L70.4 70.3V41.7c0-2.2-2.3-3.2-4.4-3.2h-4c-2.2 0-3.9 1.8-3.9 3.9v28.4L42.3 58.1c-2.2 0-3.9 1.8-3.9 3.9v7.1L64 95.8l25.6-26.7V62c0-2.2-1.8-3.9-3.9-3.9z"/>
+            </svg>
+          </span>
+        </button>
+        <ul id="mobile-dropdown" class="hidden ml-4 space-y-4 shadow-lg rounded-3xl">
+          <li><a href="#what-we-do" class="block px-4 py-2 hover:bg-gray-200 rounded-lg">what we do</a></li>
+          <li><a href="#animated-section" class="block px-4 py-2 hover:bg-gray-200 rounded-lg">why to choose us</a></li>
+        </ul>
+      </li>
+      
+      <li>
+          <a href="#footer" class="block px-10 py-2 rounded-lg text-xl hover:text-blue-500 flex items-center justify-between">
+            <div class="h-16 w-16  border  flex items-center justify-center rounded-lg shadow-lg mr-2">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 26 26" class="h-6 w-6">
+                <path d="M 16.5625 15.898438 C 16.402344 15.847656 15.398438 15.394531 16.027344 13.484375 L 16.019531 13.484375 C 17.65625 11.800781 18.90625 9.085938 18.90625 6.414063 C 18.90625 2.308594 16.175781 0.15625 13 0.15625 C 9.824219 0.15625 7.109375 2.308594 7.109375 6.414063 C 7.109375 9.097656 8.351563 11.820313 10 13.503906 C 10.640625 15.1875 9.492188 15.8125 9.253906 15.898438 C 5.929688 17.101563 2.03125 19.292969 2.03125 21.457031 C 2.03125 22.039063 2.03125 21.6875 2.03125 22.269531 C 2.03125 25.214844 7.742188 25.886719 13.03125 25.886719 C 18.308594 25.886719 23 25.214844 23 22.269531 C 23 19.792969 19.125 17.492188 16.5625 15.898438 z"></path>
+              </svg>
+            </div>
+            Contact        
+          </a>
+      </li>
+      <li>
+        <div class="p-4 mt-20">
+            <a href="#" class="block text-center px-6 py-2 mt-4 bg-blue-500 text-white rounded-full text-lg hover:bg-blue-600">
+              Book a Call
+            </a>
+          </li>
+        </div>
+      </li>
+    </ul>
+  </div>  
+</header>
+<section class="relative isolate px-6 pt-14 lg:px-0 w-screen">
+    <!-- Background Video -->
+    <video autoplay muted playsinline class="absolute inset-0 w-full h-full  lg:h-full object-cover -z-10">
+        <source src="./images/he.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Hero Content -->
+    <div class="relative mt-20 mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center text-black">
+        <!-- Logo Section -->
+        <div class="flex justify-center mb-6">
+            <img src="./images/logo3-removebg-preview.png" alt="Company Logo" class="w-35 sm:w-52 animate__animated animate__zoomIn">
+        </div>
+
+        <h1 class="text-5xl font-bold sm:text-7xl animate__animated animate__fadeInDown text-shadow">
+            Data to Enrich Your Business
+        </h1>
+        <p class="mt-8 text-lg sm:text-xl animate__animated animate__fadeInUp text-shadow">
+            Powerful insights and analytics to help you grow faster.
+        </p>
+        <div class="mt-10 flex justify-center gap-x-6">
+            <a href="#what-we-do" class="rounded-full bg-red-800 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-transform transform hover:scale-105">
+                Get Started
+            </a>
+            <a href="#what-we-do" class="mt-4 text-sm font-semibold">Learn more →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Space Between Hero and Video Carousel -->
+<div class="h-20"></div> <!-- Adjust height as needed -->
+
+<!-- Video Carousel Section (Placed Below Hero) -->
+<section class="flex flex-col items-center justify-center py-20 bg-cover bg-center bg-no-repeat p-4" style="background-image: url('./images/videoback.png');">
+    <div class="max-w-2xl mb-8">
+        <h2 class="text-3xl sm:text-4xl font-bold text-red-800 mb-4">About Us</h2>
+        <p class="text-lg text-black">
+            Welcome to 49_FRAMES, where innovation meets excellence in website creation. Founded on the principles of creativity, quality, and customer satisfaction, we are dedicated to helping businesses of all sizes establish a powerful online presence.
+        </p>
+    </div>
+
+    <div class="relative w-full max-w-6xl overflow-hidden rounded-3xl shadow-lg  ">
+        <!-- Video Container -->
+        <div id="video-container" class="flex transition-transform duration-700 ease-in-out">
+            <video autoplay loop class="w-full rounded-3xl object-cover" muted playsinline>
+                <source src="./images/hightlight-sec3.mp4" type="video/mp4">
+            </video>
+            <video autoplay loop class="w-full rounded-3xl object-cover" muted playsinline>
+                <source src="./images/highlight-first5.mp4" type="video/mp4">
+            </video>
+            <video autoplay loop class="w-full rounded-3xl object-cover" muted playsinline>
+                <source src="./images/hightlight-third2.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <btn id="prev" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 p-2 rounded-full sm:p-4 sm:left-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white sm:w-8 sm:h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+        </btn>
+
+        <btn id="next" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 p-2 rounded-full sm:p-4 sm:right-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white sm:w-8 sm:h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+        </btn>
+    </div>
+</section>
+
+<section id="what-we-do" class="py-16 bg-cover bg-center bg-no-repeat" style="background-image: url('./images/whatwedo.png');">
+    <div class="max-w-8xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center text-red-800 mb-12">What We Do</h2>
+        
+        <!-- Cards Grid -->
+        <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+            
+            
+            <!-- Card 1 -->
+<div class="card bg-white p-6 rounded-2xl shadow-lg">
+    <img src="./images/service1.jpg" alt="Web Development" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+    <h3 class="text-xl font-semibold text-red-800 text-center mt-4">Digital Strategy & Consulting
+    </h3>
+    <p class="text-gray-600 text-center mt-2">A successful digital presence starts with a solid strategy. At 49Frames, we don’t believe in one-size-fits-all solutions. We take the time to understand your business, your industry, and your goals to develop a customized digital strategy that aligns with your objectives and maximizes ROI.
+
+    </p>
+</div>
+
+<!-- Card 2 -->
+<div class="card bg-white p-6 rounded-2xl shadow-lg">
+    <img src="./images/service2.jpg" alt="App Development" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+    <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Search Engine Optimization (SEO)
+    </h3>
+    <p class="text-gray-600 text-center mt-2">Ranking high on search engines like Google is one of the most effective ways to attract organic traffic and grow your business. Our SEO experts use proven strategies to ensure your website gets found by the right people at the right time.</p>
+</div>
+
+<!-- Card 3 -->
+<div class="card bg-white p-6 rounded-2xl shadow-lg">
+    <img src="./images/service4.jpg" alt="UI/UX Design" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+    <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Social Media Marketing</h3>
+    <p class="text-gray-600 text-center mt-2">Social media is more than just a platform for posting updates. It’s a powerful tool for engaging with your audience, building brand awareness, and driving conversions. Our team at 49 Frames crafts social media strategies that help you connect with your audience and turn followers into loyal customers.
+
+    </p>
+</div>
+
+<div class="card bg-white p-6 rounded-2xl shadow-lg">
+    <img src="./images/service5.jpg" alt="UI/UX Design" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+    <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Content Marketing</h3>
+    <p class="text-gray-600 text-center mt-2">Great content is at the heart of every successful digital marketing strategy. At 49Frames, we help you craft high-quality, engaging content that resonates with your audience and drives them to take action. From blogs and articles to infographics and videos, our team creates content that informs, entertains, and converts.
+
+    </p>
+</div>
+
+<div class="card bg-white p-6 rounded-2xl shadow-lg">
+    <img src="./images/service6.jpg" alt="UI/UX Design" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+    <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Social Media & PR</h3>
+    <p class="text-gray-600 text-center mt-2">Great content is at the heart of every successful digital marketing strategy. At 49Frames, we help you craft high-quality, engaging content that resonates with your audience and drives them to take action. From blogs and articles to infographics and videos, our team creates content that informs, entertains, and converts.
+
+    </p>
+</div>
+
+<div class="card bg-white p-6 rounded-2xl shadow-lg">
+    <img src="./images/TEMPLATE4.png" alt="UI/UX Design" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+    <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Web Design & Development</h3>
+    <p class="text-gray-600 text-center mt-2">Your website is often the first impression potential customers have of your brand. At 49Frames, we design and develop user-friendly, mobile-responsive, and visually appealing websites that are optimized for both search engines and conversions. We don’t just build websites — we create digital experiences that leave a lasting impression.</p>
+</div>
+
+
+
+        </div>
+    </div>
+</section>
+
+<section class="overflow-hidden bg-white py-24 sm:py-32 bg-cover bg-center bg-no-repeat" style="background-image: url('./images/whatwedo.png');">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            <div class="lg:pt-4 lg:pr-8">
+                <div class="lg:max-w-lg">
+                    <h2 class="text-base font-semibold text-red-800">design with us </h2>
+                    <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">What we can do for you </p>
+                    <p class="mt-6 text-lg text-gray-600">We bring solutions to make life easier for our clients.</p>
+                    <dl class="mt-10 max-w-xl space-y-8 text-gray-600 lg:max-w-none">
+                        <div class="relative flex items-center gap-3">
+                            <svg class="w-6 h-6 text-red-800" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 0 1-1.44-8.765 4.5 4.5 0 0 1 8.302-3.046 3.5 3.5 0 0 1 4.504 4.272A4 4 0 0 1 15 17H5.5Zm3.75-2.75a.75.75 0 0 0 1.5 0V9.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0l-3.25 3.5a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z" clip-rule="evenodd" />
+                            </svg>
+                            <dt class="font-semibold text-gray-900">Push to deploy.</dt>
+                        </div>
+                        <dd class="pl-9">Effortlessly deploy your code with a single push—streamline your development workflow with push-to-deploy!</dd>
+                        
+                        <div class="relative flex items-center gap-3">
+                            <svg class="w-6 h-6 text-red-800" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clip-rule="evenodd" />
+                            </svg>
+                            <dt class="font-semibold text-gray-900">SSL certificates.</dt>
+                        </div>
+                        <dd class="pl-9">Ensure secure and encrypted connections with SSL certificates—protecting your data and building user trust!</dd>
+                        
+                        <div class="relative flex items-center gap-3">
+                            <svg class="w-6 h-6 text-red-800" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M4.632 3.533A2 2 0 0 1 6.577 2h6.846a2 2 0 0 1 1.945 1.533l1.976 8.234A3.489 3.489 0 0 0 16 11.5H4c-.476 0-.93.095-1.344.267l1.976-8.234Z" />
+                                <path fill-rule="evenodd" d="M4 13a2 2 0 1 0 0 4h12a2 2 0 1 0 0-4H4Zm11.24 2a.75.75 0 0 1 .75-.75H16a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V15Zm-2.25-.75a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75h-.01Z" clip-rule="evenodd" />
+                            </svg>
+                            <dt class="font-semibold text-gray-900">Database backups.</dt>
+                        </div>
+                        <dd class="pl-9">Safeguard your data with regular database backups—ensuring reliability, security, and peace of mind!</dd>
+                    </dl>
+                </div>
+            </div>
+            <img id="productImage" src="./images/feacture.png" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl ring-1 shadow-xl ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+        </div>
+    </div>
+</section>
+
+
+    <!-- Section with Background Image -->
+    <section id="animated-section" class="relative isolate overflow-hidden bg-[url('./images/whatwedo.png')] bg-cover bg-center bg-no-repeat px-6 py-24 sm:py-32 lg:px-0">
+         <!-- Dark Overlay -->
+
+        <div class="relative mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 lg:items-center">
+            <!-- Left Image -->
+            <div class="flex justify-center">
+                <img id="image" class="w-[48rem] max-w-full rounded-xl shadow-xl opacity-0 translate-y-10" src="./images/workflow.png" alt="Project Screenshot">
+            </div>
+
+            <!-- Right Content -->
+            <div id="text-content" class="opacity-0 translate-y-10">
+                <p class="text-base font-semibold text-red-800">we are always for you </p>
+                <h1 class="mt-2 text-4xl font-semibold tracking-tight text-black sm:text-5xl">why to choose us </h1>
+                <p class="mt-6 text-xl text-gray-500">We bring solutions to make life easier for our clients.</p>
+
+                <ul class="mt-8 space-y-6 text-gray-500">
+                    <li class="feature-item flex items-start gap-x-3 opacity-0 translate-y-10">
+                        <svg class="mt-1 size-5 flex-none text-red-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 0 1-1.44-8.765 4.5 4.5 0 0 1 8.302-3.046 3.5 3.5 0 0 1 4.504 4.272A4 4 0 0 1 15 17H5.5Z" clip-rule="evenodd" />
+                        </svg>
+                        <span><strong class="font-semibold text-black">
+
+                            Quality Assurance</strong> We adhere to strict quality standards to deliver websites that are reliable, secure, and high-performing.
+
+
+                        </span>
+                    </li>
+                    <li class="feature-item flex items-start gap-x-3 opacity-0 translate-y-10">
+                        <svg class="mt-1 size-5 flex-none text-red-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6Z" clip-rule="evenodd" />
+                        </svg>
+                        <span><strong class="font-semibold text-black">Affordable Pricing
+                        </strong> We provide top-quality services at competitive prices to ensure you get the best value for your investment.
+
+                    </span>
+                    </li>
+                    <li class="feature-item flex items-start gap-x-3 opacity-0 translate-y-10">
+                        <svg class="mt-1 size-5 flex-none text-red-800" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M4.632 3.533A2 2 0 0 1 6.577 2h6.846a2 2 0 0 1 1.945 1.533l1.976 8.234A3.489 3.489 0 0 0 16 11.5H4c-.476 0-.93.095-1.344.267l1.976-8.234Z" />
+                        </svg>
+                        <span><strong class="font-semibold text-black">Customization</strong> We offer tailor-made solutions to meet your specific business needs and objectives.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto p-6 text-center md:text-left 
+                    bg-[url('./images/whatwedo.png')] bg-cover bg-center bg-no-repeat h-64 md:h-80 rounded-lg overflow-hidden"
+                    id="whatWeDoSection">
+
+    <!-- Dark Overlay for Readability -->
+    <div class="absolute inset-0 backdrop-blur-sm"></div>
+
+    <!-- Content Inside -->
+    <div class="relative z-10 mb-4 md:mb-0 text-red-800">
+        <h2 class="text-3xl font-bold" id="headline">Join Us Today!</h2>
+        <p class="text-lg" id="description">Get started now and explore amazing opportunities.</p>
+    </div>
+
+    <button id="ctaButton" 
+        class="relative z-10 px-6 py-3 text-white bg-red-700 rounded-full shadow-lg hover:bg-red-800 transition-all duration-300">
+        Get Started
+    </button>
+</section>
+
+
+    <footer id="footer" class="relative text-red-800 py-10 bg-cover bg-center backdrop-blur-sm" style="background-image: url('./images/whatwedo.png');">
+        <!-- Overlay for blur effect -->
+        <div class="absolute inset-0  bg-opacity-40 backdrop-blur-sm"></div>
+    
+        <div class="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Company Info -->
+<div class="flex-col items-center space-x-4">
+    <img src="./images/logo3-removebg-preview.png" alt="Softgen Logo" class="h-30 w-40">
+    <div>
+        <h2 class="text-xl font-semibold">46frame</h2>
+        <p class="text-gray-500 mt-2">
+            Building innovative apps & web solutions for the future.
+        </p>
+    </div>
+</div>
+
+    
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-semibold">Quick Links</h3>
+                <ul class="mt-2 space-y-2">
+                    <li><a href="#" class="text-gray-500 hover:text-red-800">About Us</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-red-800">Services</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-red-800">Portfolio</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-red-800">Contact</a></li>
+                </ul>
+            </div>
+    
+            <!-- Resources -->
+            <div>
+                <h3 class="text-lg font-semibold">Resources</h3>
+                <ul class="mt-2 space-y-2">
+                    <li><a href="#" class="text-gray-500 hover:text-red-800">Blog</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-red-800">FAQs</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-red-800">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-500 hover:text-red-800">Terms & Conditions</a></li>
+                </ul>
+            </div>
+    
+            <!-- Social Media & Newsletter -->
+            <div>
+                <h3 class="text-lg font-semibold">Follow Us</h3>
+                <div class="flex space-x-4 mt-3">
+                    <a href="#" class="text-gray-500 hover:text-red-800">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-red-800">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-red-800">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-red-800">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+    
+                <!-- Newsletter -->
+                <h3 class="text-lg font-semibold mt-6">Subscribe</h3>
+                <div class="mt-3 flex">
+                    <input type="email" placeholder="Your email" class="w-full p-2 rounded-l-md bg-gray-800 text-white border border-gray-700 focus:outline-none">
+                    <button class="bg-red-800 px-4 text-white py-2 rounded-r-md hover:bg-red-700">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Bottom Bar -->
+        <div class="relative border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+            &copy; 2025 46frame. All rights reserved.
+        </div>
+    </footer>
+     <!-- FontAwesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+     
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Custom JS -->
+<script src="script.js"></script>
+
+</body>
+</html>

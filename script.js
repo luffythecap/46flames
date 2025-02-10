@@ -205,3 +205,21 @@ gsap.utils.toArray(".feature-item").forEach((item, index) => {
             }
         });
     });
+
+    const dropdownBtn = document.getElementById("dropdown-btn");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+    const dropdownArrow = document.getElementById("dropdown-arrow");
+  
+    dropdownBtn.addEventListener("click", () => {
+      dropdownMenu.classList.toggle("hidden");
+      dropdownArrow.classList.toggle("rotate-180");
+    });
+  
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (event) => {
+      if (!dropdownBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.add("hidden");
+        dropdownArrow.classList.remove("rotate-180");
+      }
+    });
+  

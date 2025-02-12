@@ -39,10 +39,31 @@
                 </button>
                 
                 <!-- Dropdown -->
-                <ul id="dropdown-menu" class="absolute left-0 mt-5 hidden w-40 bg-white shadow-lg rounded-2xl border border-gray-200 text-xl">
-                  <li><a href="#what-we-do" class="block px-2 py-3 hover:bg-gray-100 rounded-2xl">what we do</a></li>
-                  <li><a href="#animated-section" class="block px-3 py-2 hover:bg-gray-100 rounded-2xl">why to choose us</a></li>
-                </ul>
+                <ul id="dropdown-menu" class="absolute left-0 mt-5 hidden w-max bg-white shadow-lg rounded-3xl border border-gray-200 text-xl p-2">
+                    <li>
+                      <a href="#what-we-do" class="flex items-center px-2 py-3 hover:bg-gray-100 rounded-2xl">
+                        <!-- Briefcase Icon -->
+                        <div class="h-14 w-14 border flex items-center justify-center rounded-2xl shadow-lg mr-2 text-white bg-red-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 ">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 8V6a2 2 0 012-2h8a2 2 0 012 2v2m4 0h-4M4 8H2m18 0v10a2 2 0 01-2 2H6a2 2 0 01-2-2V8m18 0H4m4-2h8"/>
+                        </svg>
+                        </div>
+                        What We Do ?
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#animated-section" class="flex items-center px-3 py-2 hover:bg-gray-100 rounded-2xl">
+                        <!-- Star Icon -->
+                        <div class="h-14 w-14 border flex items-center justify-center rounded-2xl shadow-lg mr-2 text-white bg-red-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 ">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 17.27l5.18 3.73-1.64-6.03L20 9.24l-6.09-.52L12 3 10.09 8.72 4 9.24l4.46 5.73-1.64 6.03L12 17.27z"/>
+                        </svg>
+                        </div>
+                        Why to Choose Us ?
+                      </a>
+                    </li>
+                  </ul>
+                                    
               </li>
               
               <li><a href="#footer" class="hover:text-red-800 text-xl">Contact</a></li>
@@ -107,7 +128,7 @@
             </svg>
           </span>
         </button>
-        <ul id="mobile-dropdown" class="hidden ml-2 mr-2 space-y-2 mt-4 bg-white shadow-xl rounded-3xl p-2 border border-gray-200">
+        <ul id="mobile-dropdown" class="hidden ml-2 mr-2 space-y-2 mt-4 bg-white shadow-xl rounded-3xl p-4 border border-gray-200">
             <li><a href="#what-we-do" class="block text-xl px-4 py-2 hover:bg-gray-200 rounded-lg">what we do</a></li>
             <li><a href="#animated-section" class="block text-xl px-4 py-2 hover:bg-gray-200 rounded-lg">why to choose us</a></li>
           </ul>
@@ -172,7 +193,7 @@
 <section class="flex flex-col items-center justify-center py-20 bg-cover bg-center bg-no-repeat p-4" style="background-image: url('./images/videoback.png');">
     <div class="max-w-2xl mb-8">
         <h2 class="text-3xl sm:text-4xl font-bold text-red-800 mb-4">About Us</h2>
-        <p class="text-lg text-black">
+        <p class="text-2xl text-black">
             Welcome to 49_FRAMES, where innovation meets excellence in website creation. Founded on the principles of creativity, quality, and customer satisfaction, we are dedicated to helping businesses of all sizes establish a powerful online presence.
         </p>
     </div>
@@ -215,8 +236,8 @@
             
             
             <!-- Card 1 -->
-<div class="card bg-white p-4 rounded-3xl shadow-lg">
-    <img src="./images/service1.png" alt="Web Development" class="mx-auto w-full h-72 object-cover rounded-2xl">
+<div class="card bg-white p-2 rounded-3xl shadow-lg border-gray-400">
+    <video src="./images/service1.mp4" autoplay loop muted playsinline class="mx-auto w-92 h-72 object-cover rounded-3xl  "></video>
     <h3 class="text-xl font-semibold text-red-800 text-center mt-4">Digital Strategy & Consulting
     </h3>
     <p class="text-gray-600 text-center mt-2">A successful digital presence starts with a solid strategy. At 49Frames, we don’t believe in one-size-fits-all solutions. We take the time to understand your business, your industry, and your goals to develop a customized digital strategy that aligns with your objectives and maximizes ROI.
@@ -225,15 +246,15 @@
 </div>
 
 <!-- Card 2 -->
-<div class="card bg-white p-4 rounded-2xl shadow-lg">
-    <img src="./images/service2.jpg" alt="App Development" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+<div class="card bg-white p-2 rounded-3xl shadow-lg">
+    <video src="./images/service2.mp4" autoplay  muted playsinline class="mx-auto w-92 h-72 object-cover rounded-3xl "></video>
     <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Search Engine Optimization (SEO)
     </h3>
     <p class="text-gray-600 text-center mt-2">Ranking high on search engines like Google is one of the most effective ways to attract organic traffic and grow your business. Our SEO experts use proven strategies to ensure your website gets found by the right people at the right time.</p>
 </div>
 
 <!-- Card 3 -->
-<div class="card bg-white p-4 rounded-2xl shadow-lg">
+<div class="card bg-white p-2 rounded-2xl shadow-lg">
     <video src="./images/services3.mp4" autoplay loop muted playsinline class="mx-auto w-92 h-72 object-cover rounded-2xl"></video>
     <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Social Media Marketing</h3>
     <p class="text-gray-600 text-center mt-2">
@@ -244,24 +265,24 @@
 </div>
 
 
-<div class="card bg-white p-6 rounded-2xl shadow-lg">
-    <img src="./images/service5.jpg" alt="UI/UX Design" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+<div class="card bg-white p-2 rounded-3xl shadow-lg">
+    <video src="./images/service4.mp4" autoplay  muted playsinline class="mx-auto w-92 h-72 object-cover rounded-3xl "></video>
     <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Content Marketing</h3>
     <p class="text-gray-600 text-center mt-2">Great content is at the heart of every successful digital marketing strategy. At 49Frames, we help you craft high-quality, engaging content that resonates with your audience and drives them to take action. From blogs and articles to infographics and videos, our team creates content that informs, entertains, and converts.
 
     </p>
 </div>
 
-<div class="card bg-white p-6 rounded-2xl shadow-lg">
-    <img src="./images/service6.jpg" alt="UI/UX Design" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+<div class="card bg-white p-2 rounded-3xl shadow-lg">
+    <video src="./images/service5.mp4" autoplay loop  muted playsinline class="mx-auto w-92 h-72 object-cover rounded-3xl "></video>
     <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Social Media & PR</h3>
     <p class="text-gray-600 text-center mt-2">Great content is at the heart of every successful digital marketing strategy. At 49Frames, we help you craft high-quality, engaging content that resonates with your audience and drives them to take action. From blogs and articles to infographics and videos, our team creates content that informs, entertains, and converts.
 
     </p>
 </div>
 
-<div class="card bg-white p-6 rounded-2xl shadow-lg">
-    <img src="./images/TEMPLATE4.png" alt="UI/UX Design" class="mx-auto w-92 h-72 object-cover rounded-2xl">
+<div class="card bg-white p-2 rounded-3xl shadow-lg">
+    <video src="./images/service6.mp4" autoplay  muted playsinline class="mx-auto w-92 h-72 object-cover rounded-3xl "></video>
     <h3 class="text-xl font-semibold text-center text-red-800 mt-4">Web Design & Development</h3>
     <p class="text-gray-600 text-center mt-2">Your website is often the first impression potential customers have of your brand. At 49Frames, we design and develop user-friendly, mobile-responsive, and visually appealing websites that are optimized for both search engines and conversions. We don’t just build websites — we create digital experiences that leave a lasting impression.</p>
 </div>
@@ -386,10 +407,10 @@
         <!-- Overlay for blur effect -->
         <div class="absolute inset-0  bg-opacity-40 backdrop-blur-sm"></div>
     
-        <div class="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="relative max-w-7xl mx-auto px-2 grid grid-cols-1 md:grid-cols-4 gap-8">
             <!-- Company Info -->
-<div class="flex-col items-center space-x-4">
-    <img src="./images/logo3-removebg-preview.png" alt="Softgen Logo" class="h-30 w-40">
+<div class="flex-col items-start space-x-4">
+    <img src="./images/logo3-removebg-preview.png" alt="Softgen Logo" class="h-30 w-40 mr-10 md:mr-20">
     <div>
         <h2 class="text-xl font-semibold">46frame</h2>
         <p class="text-gray-500 mt-2">

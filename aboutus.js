@@ -63,3 +63,40 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    gsap.registerPlugin(ScrollTrigger);
+
+    let timelineTrack = document.querySelector(".timeline-track");
+    let sections = gsap.utils.toArray(".timeline-item");
+
+    gsap.to(timelineTrack, {
+        x: () => -1 * (timelineTrack.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".horizontal-section",
+            start: "top top",
+            pin: true,
+            scrub: 1,
+            end: () => "+=" + timelineTrack.scrollWidth,
+            anticipatePin: 1
+        }
+    });
+
+    // Disable vertical scroll when inside the timeline section
+    let isInsideTimeline = false;
+
+    document.addEventListener("wheel", function (event) {
+        if (isInsideTimeline) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+
+    document.querySelector(".horizontal-section").addEventListener("mouseenter", () => {
+        isInsideTimeline = true;
+    });
+
+    document.querySelector(".horizontal-section").addEventListener("mouseleave", () => {
+        isInsideTimeline = false;
+    });
+});

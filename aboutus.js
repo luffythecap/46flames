@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let sections = gsap.utils.toArray(".timeline-item");
 
     gsap.to(timelineTrack, {
-        x: () => -1 * (timelineTrack.scrollWidth - window.innerWidth),
+        x: () => -1.025 * (timelineTrack.scrollWidth - window.innerWidth),
         ease: "none",
         scrollTrigger: {
             trigger: ".horizontal-section",
@@ -99,4 +99,33 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".horizontal-section").addEventListener("mouseleave", () => {
         isInsideTimeline = false;
     });
+}); 
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Smooth scroll logic (same as before)
+    document.querySelectorAll("a[href^='#']").forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            window.scrollTo({
+                top: target.offsetTop,
+                behavior: "smooth"
+            });
+        });
+    });
+
+    // Animation on scroll (triggered when section comes into view)
+    function animateOnScroll() {
+        const sections = document.querySelectorAll("[data-animate]");
+        
+        sections.forEach((section) => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                section.classList.add("animate__fadeInUp");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", animateOnScroll);
+    animateOnScroll(); // Initial check on load
 });

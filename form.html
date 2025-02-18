@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Call - Form Page with 3D Modal and Custom Cursor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      cursor: url('https://www.gstatic.com/webp/gallery3/1.png'), auto;
+    }
+
+    .custom-cursor {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: black;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+
+    .modal {
+      transform: perspective(1000px) rotateX(60deg);
+    }
+
+    /* Custom phone image for smaller screens */
+    .phone-image {
+      display: none;
+    }
+
+    /* For larger screens */
+    @media (min-width: 768px) {
+      .phone-image {
+        display: none;
+      }
+
+      .desktop-model {
+        display: block;
+      }
+    }
+
+    /* For mobile screens */
+    @media (max-width: 767px) {
+      .desktop-model {
+        display: none;
+      }
+
+      .phone-image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center relative">
+
+  <!-- Custom Cursor -->
+  <div class="absolute custom-cursor"></div>
+
+  <!-- Left Side 3D Model (Hidden in phone view, shown in desktop view) -->
+  <div class="desktop-model hidden lg:block absolute left-0 top-1/2 transform -translate-y-1/2 p-8">
+    <div id="3dmodel" class="w-96 h-96 bg-blue-500">
+      <!-- Here you would embed your Spline 3D model or any 3D content -->
+      <p class="text-white text-center p-4">3D Model (Desktop)</p>
+    </div>
+  </div>
+
+  <!-- Right Side Form (Centered) -->
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative z-10">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Book a Call</h2>
+    <form>
+      <label for="name" class="block mb-2 text-sm font-semibold">Full Name</label>
+      <input type="text" id="name" placeholder="John Doe" class="mb-4 p-2 w-full border rounded-md" />
+
+      <label for="email" class="block mb-2 text-sm font-semibold">Email Address</label>
+      <input type="email" id="email" placeholder="john.doe@example.com" class="mb-4 p-2 w-full border rounded-md" />
+
+      <label for="phone" class="block mb-2 text-sm font-semibold">Phone Number</label>
+      <input type="tel" id="phone" placeholder="123-456-7890" class="mb-4 p-2 w-full border rounded-md" />
+
+      <label for="preferred-date" class="block mb-2 text-sm font-semibold">Preferred Call Date</label>
+      <input type="date" id="preferred-date" class="mb-4 p-2 w-full border rounded-md" />
+
+      <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg w-full">Book a Call</button>
+    </form>
+  </div>
+
+  <!-- Phone View Image (Replaces the 3D model on mobile) -->
+  <div class="phone-image absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <img src="https://via.placeholder.com/300x500.png?text=Phone+View" alt="Phone View" class="w-full max-w-sm rounded-lg">
+  </div>
+
+  <!-- Right Side (Optional 3D Modal) -->
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white p-8 rounded-lg modal">
+      <h2 class="text-2xl font-semibold mb-4">3D Modal</h2>
+      <p>This is a 3D modal example.</p>
+      <button id="closeModalBtn" class="bg-red-500 text-white py-2 px-4 rounded-lg mt-4">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // Modal Toggle
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modal = document.getElementById('modal');
+
+    // Open modal (you can add a button to trigger this)
+    openModalBtn?.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+
+    // Close modal
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    // Custom Cursor
+    const customCursor = document.querySelector('.custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+      customCursor.style.left = `${e.pageX}px`;
+      customCursor.style.top = `${e.pageY}px`;
+    });
+  </script>
+</body>
+</html>

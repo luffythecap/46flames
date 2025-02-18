@@ -68,64 +68,113 @@ document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(ScrollTrigger);
 
     let timelineTrack = document.querySelector(".timeline-track");
-    let sections = gsap.utils.toArray(".timeline-item");
+    let horizontalSection = document.querySelector(".horizontal-section");
+    let isInsideTimeline = false;
+
+    // Apply GPU optimization
+    timelineTrack.style.willChange = "transform";
+    timelineTrack.style.transform = "translate3d(0, 0, 0)";
 
     gsap.to(timelineTrack, {
-        x: () => -1.025 * (timelineTrack.scrollWidth - window.innerWidth),
-        ease: "none",
+        x: () => -1.025 * (timelineTrack.scrollWidth - window.innerWidth), 
+        ease: "power1.out", // Slower easing
+        duration: window.innerWidth < 768 ? 4 : 2, // Slow animation on phone
         scrollTrigger: {
             trigger: ".horizontal-section",
             start: "top top",
             pin: true,
-            scrub: 1,
-            end: () => "+=" + timelineTrack.scrollWidth,
-            anticipatePin: 1
+            scrub: window.innerWidth < 768 ? 1.5 : 0.3, // Slower scrub on mobile
+            end: () => "+=" + (timelineTrack.scrollWidth - window.innerWidth),
+            anticipatePin: 1,
+            invalidateOnRefresh: true, // Ensures smooth recalculations on resize
         }
     });
 
-    // Disable vertical scroll when inside the timeline section
-    let isInsideTimeline = false;
-
-    document.addEventListener("wheel", function (event) {
+    // Prevent unnecessary scroll event listeners
+    function preventScroll(event) {
         if (isInsideTimeline) {
             event.preventDefault();
         }
-    }, { passive: false });
-
-    document.querySelector(".horizontal-section").addEventListener("mouseenter", () => {
-        isInsideTimeline = true;
-    });
-
-    document.querySelector(".horizontal-section").addEventListener("mouseleave", () => {
-        isInsideTimeline = false;
-    });
-}); 
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Smooth scroll logic (same as before)
-    document.querySelectorAll("a[href^='#']").forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            window.scrollTo({
-                top: target.offsetTop,
-                behavior: "smooth"
-            });
-        });
-    });
-
-    // Animation on scroll (triggered when section comes into view)
-    function animateOnScroll() {
-        const sections = document.querySelectorAll("[data-animate]");
-        
-        sections.forEach((section) => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                section.classList.add("animate__fadeInUp");
-            }
-        });
     }
 
-    window.addEventListener("scroll", animateOnScroll);
-    animateOnScroll(); // Initial check on load
+    horizontalSection.addEventListener("mouseenter", () => isInsideTimeline = true);
+    horizontalSection.addEventListener("mouseleave", () => isInsideTimeline = false);
+
+    // Optimize event listeners for mobile only
+    if (window.innerWidth < 768) {
+        document.addEventListener("wheel", preventScroll, { passive: false });
+        document.addEventListener("touchmove", preventScroll, { passive: false });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (window.innerWidth <= 640) { // Apply only in phone view
+        let scrollSpeed = 1.5; // Slightly slower than normal scrolling
+        let isScrolling = false;
+        
+        // Prevent default scrolling behavior temporarily for smoother scroll
+        document.body.style.overflow = "hidden";
+        
+        window.addEventListener("wheel", (e) => {
+            e.preventDefault(); // Prevent the default scroll
+            if (!isScrolling) {
+                isScrolling = true;
+                let scrollDelta = e.deltaY * scrollSpeed;
+                smoothScrollTo(scrollDelta);
+            }
+        }, { passive: false });
+
+        let touchStartY = 0;
+
+        window.addEventListener("touchstart", (e) => {
+            touchStartY = e.touches[0].clientY;
+        });
+
+        window.addEventListener("touchmove", (e) => {
+            e.preventDefault();
+            let touchEndY = e.touches[0].clientY;
+            let deltaY = touchStartY - touchEndY;
+            smoothScrollTo(deltaY * scrollSpeed);
+        }, { passive: false });
+
+        function smoothScrollTo(deltaY) {
+            let currentY = window.scrollY;
+            let targetY = currentY + deltaY;
+            
+            // Using smooth scroll behavior with a slight speed modification
+            window.scrollTo({
+                top: targetY,
+                behavior: "smooth"
+            });
+        }
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Split text into individual letters
+    const text = document.getElementById("thank-you-text");
+    const textContent = text.textContent;
+    text.textContent = ''; // Empty the text content
+
+    // Create individual span for each letter
+    Array.from(textContent).forEach(letter => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        text.appendChild(span);
+    });
+
+    // Animate letters using GSAP and ScrollTrigger
+    gsap.from("#thank-you-text span", {
+        scrollTrigger: {
+            trigger: "#thank-you-text",
+            start: "top 80%", // Animation starts when the text is 80% visible in the viewport
+            end: "bottom 20%", // Animation ends when the text is at the bottom of the viewport
+            scrub: true, // Scroll-based animation
+            markers: false // Hide markers, set to true for debugging
+        },
+        opacity: 0,
+        y: 30,
+        stagger: 0.05, // Stagger the animation by 0.05 seconds for each letter
+        ease: "power4.out" // Easing for smooth animation
+    });
 });

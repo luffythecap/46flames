@@ -17,6 +17,25 @@
         html, body {
     scroll-behavior: smooth; /* Prevent sudden jumps */
 }
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#thank-you-text, #visit-text {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+#visit-text {
+    animation-delay: 0.5s; /* Delayed animation for a smooth effect */
+}
 
 .timeline-track {
     will-change: transform;
@@ -470,6 +489,16 @@
     </div>
 </div>
 </section>
+<section class="bg-[#0E0E0E] text-red-700 flex items-center justify-center min-h-screen">
+
+    <!-- Thank You Section -->
+    <section class="text-center  max-w-lg mx-auto">
+        <h2 id="thank-you-text" class="text-4xl font-extrabold">Thank You! </h2>
+        <p id="visit-text" class="mt-4 text-lg">Thanks for visiting our website! </p>
+    </section>
+
+</section>
+
 <footer id="footer" class="relative text-red-800 py-10 bg-cover bg-center backdrop-blur-sm" style="background-image: url('./images/aboutuss.png');">
     <!-- Overlay for blur effect -->
     <div class="absolute inset-0  bg-opacity-40 backdrop-blur-sm"></div>

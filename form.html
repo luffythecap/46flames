@@ -3,127 +3,169 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book a Call - Form Page with 3D Modal and Custom Cursor</title>
+  <title>Book a Call - 3D Model & Form</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      cursor: url('https://www.gstatic.com/webp/gallery3/1.png'), auto;
+      background: url('./images/whatwedo.png') no-repeat center center/cover;
+           
+      overflow-y: auto; /* Enable vertical scrolling */
     }
 
-    .custom-cursor {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: black;
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease;
+    .container {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 40px;
+      padding: 40px 20px;
     }
 
-    .modal {
-      transform: perspective(1000px) rotateX(60deg);
-    }
-
-    /* Custom phone image for smaller screens */
-    .phone-image {
-      display: none;
-    }
-
-    /* For larger screens */
     @media (min-width: 768px) {
-      .phone-image {
-        display: none;
-      }
-
-      .desktop-model {
-        display: block;
+      .container {
+        flex-direction: row;
       }
     }
 
-    /* For mobile screens */
-    @media (max-width: 767px) {
-      .desktop-model {
-        display: none;
-      }
+    /* 3D Model Styling */
+    model-viewer {
+      width: 100%;
+      max-width: 500px;
+      height: 700px;
+    }
 
-      .phone-image {
-        display: block;
+    @media (max-width: 768px) {
+      model-viewer {
         width: 100%;
-        height: auto;
+        max-width: 500px;
+        height: 500px;
       }
     }
   </style>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center relative">
+<body class="bg-gray-100 flex items-center justify-center">
 
-  <!-- Custom Cursor -->
-  <div class="absolute custom-cursor"></div>
+  <div class="container">
+    <!-- Form -->
+    <div class="form-container bg-white p-8 rounded-3xl shadow-lg max-w-md w-full">
+      <!-- Logo Section -->
+<div class="flex justify-center mb-6">
+  <img src="./images/logo3-removebg-preview.png" alt="Company Logo" class="w-34 h-24 md:w-39 md:h-32 object-contain">
+</div>
 
-  <!-- Left Side 3D Model (Hidden in phone view, shown in desktop view) -->
-  <div class="desktop-model hidden lg:block absolute left-0 top-1/2 transform -translate-y-1/2 p-8">
-    <div id="3dmodel" class="w-96 h-96 bg-blue-500">
-      <!-- Here you would embed your Spline 3D model or any 3D content -->
-      <p class="text-white text-center p-4">3D Model (Desktop)</p>
+      <h2 class="text-3xl font-bold text-red-800 mb-6 text-center"> Book a Call</h2>
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms Access Key -->
+        <input type="hidden" name="access_key" value="6a4b6799-5b28-49f1-a239-311cd8e932ed" />
+
+        <div class="mb-4">
+          <label for="name" class="block text-sm ml-3 font-semibold text-gray-600">Full Name</label>
+          <input type="text" id="name" name="name" required placeholder="John Doe" 
+            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm" />
+        </div>
+
+        <div class="mb-4">
+          <label for="email" class="block text-sm ml-3 font-semibold text-gray-600">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="john.doe@example.com" 
+            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm" />
+        </div>
+
+        <div class="mb-4">
+          <label for="product" class="block text-sm ml-3 font-semibold text-gray-600">Select Product</label>
+          <select id="product" name="product_want" required 
+            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm">
+            <option value="" disabled selected>Select the product</option>
+            <option value="Digital Strategy & Consulting">Digital Strategy & Consulting</option>
+            <option value="Search Engine Optimization (SEO)
+            ">Search Engine Optimization (SEO)
+            </option>
+            <option value="Social Media Marketing
+            ">Social Media Marketing
+            </option>
+            <option value="Web Design & Development
+            ">Web Design & Development
+            </option>
+            <option value="Social Media & PR">Social Media & PR</option>
+            <option value="Content Marketing
+            ">Content Marketing
+            </option>
+            <option value="none">None</option>
+          </select>
+        </div>
+        
+        <div class="mb-4">
+          <label for="phone" class="block text-sm ml-3 font-semibold text-gray-600">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required placeholder="123-456-7890" 
+            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm" />
+        </div>
+
+        <div class="mb-4">
+          <label for="preferred-date" class="block ml-3 text-sm font-semibold text-gray-600">Preferred Date for meeting</label>
+          <input type="date" id="preferred-date" name="preferred_date" required
+            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm" />
+        </div>
+
+        <!-- Message Field -->
+        <div class="mb-4">
+          <label for="message" class="block text-sm ml-3 font-semibold text-gray-600">Message</label>
+          <textarea id="message" name="message" required placeholder="Enter your message here..." 
+            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm h-24"></textarea>
+        </div>
+
+        <!-- Success Message -->
+        <p id="success-message" class="hidden text-green-600 text-sm text-center mb-3">✅ Your request has been submitted!</p>
+
+        <button type="submit" class="bg-gradient-to-r from-red-600 to-red-900 text-white py-3 px-6 rounded-3xl w-full text-lg font-semibold shadow-md hover:opacity-90 transition duration-300">
+          Book a Call
+      </button>
+      
+      </form>
     </div>
-  </div>
 
-  <!-- Right Side Form (Centered) -->
-  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative z-10">
-    <h2 class="text-2xl font-semibold mb-6 text-center">Book a Call</h2>
-    <form>
-      <label for="name" class="block mb-2 text-sm font-semibold">Full Name</label>
-      <input type="text" id="name" placeholder="John Doe" class="mb-4 p-2 w-full border rounded-md" />
-
-      <label for="email" class="block mb-2 text-sm font-semibold">Email Address</label>
-      <input type="email" id="email" placeholder="john.doe@example.com" class="mb-4 p-2 w-full border rounded-md" />
-
-      <label for="phone" class="block mb-2 text-sm font-semibold">Phone Number</label>
-      <input type="tel" id="phone" placeholder="123-456-7890" class="mb-4 p-2 w-full border rounded-md" />
-
-      <label for="preferred-date" class="block mb-2 text-sm font-semibold">Preferred Call Date</label>
-      <input type="date" id="preferred-date" class="mb-4 p-2 w-full border rounded-md" />
-
-      <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg w-full">Book a Call</button>
-    </form>
-  </div>
-
-  <!-- Phone View Image (Replaces the 3D model on mobile) -->
-  <div class="phone-image absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-    <img src="https://via.placeholder.com/300x500.png?text=Phone+View" alt="Phone View" class="w-full max-w-sm rounded-lg">
-  </div>
-
-  <!-- Right Side (Optional 3D Modal) -->
-  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white p-8 rounded-lg modal">
-      <h2 class="text-2xl font-semibold mb-4">3D Modal</h2>
-      <p>This is a 3D modal example.</p>
-      <button id="closeModalBtn" class="bg-red-500 text-white py-2 px-4 rounded-lg mt-4">Close</button>
-    </div>
+    <!-- 3D Model -->
+    <model-viewer 
+      id="model"
+      src="./images/3d.glb"
+      alt="3D Model"
+      disable-zoom
+      camera-controls
+      interaction-prompt="none"
+      class="w-full md:w-[400px] md:h-[400px]">
+    </model-viewer>
   </div>
 
   <script>
-    // Modal Toggle
-    const openModalBtn = document.getElementById('openModalBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const modal = document.getElementById('modal');
+    // Mouse Movement Controls 3D Model
+    const model = document.querySelector("#model");
 
-    // Open modal (you can add a button to trigger this)
-    openModalBtn?.addEventListener('click', () => {
-      modal.classList.remove('hidden');
+    document.addEventListener("mousemove", (event) => {
+      let x = (event.clientX / window.innerWidth - 0.5) * 2;
+      let y = (event.clientY / window.innerHeight - 0.5) * 2;
+      let sensitivity = 40;
+      model.setAttribute("camera-orbit", `${-x * sensitivity}deg ${90 - y * sensitivity}deg auto`);
     });
 
-    // Close modal
-    closeModalBtn.addEventListener('click', () => {
-      modal.classList.add('hidden');
-    });
+    // Handle Web3Forms Submission
+    document.querySelector("#contact-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const formData = new FormData(this);
 
-    // Custom Cursor
-    const customCursor = document.querySelector('.custom-cursor');
-    document.addEventListener('mousemove', (e) => {
-      customCursor.style.left = `${e.pageX}px`;
-      customCursor.style.top = `${e.pageY}px`;
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          document.getElementById("success-message").classList.remove("hidden");
+          this.reset(); // Clear form after submission
+        }
+      })
+      .catch(error => console.error("Error:", error));
     });
   </script>
+
 </body>
 </html>

@@ -9,8 +9,7 @@
   <style>
     body {
       background: url('./images/whatwedo.png') no-repeat center center/cover;
-           
-      overflow-y: auto; /* Enable vertical scrolling */
+      overflow-y: auto;
     }
 
     .container {
@@ -23,24 +22,36 @@
       padding: 40px 20px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       .container {
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .form-container {
+        width: 40%;
+      }
+
+      model-viewer {
+        width: 50%;
+        max-width: 600px;
+        height: 800px;
       }
     }
 
     /* 3D Model Styling */
     model-viewer {
       width: 100%;
-      max-width: 500px;
+      max-width: 700px;
       height: 700px;
     }
 
     @media (max-width: 768px) {
       model-viewer {
         width: 100%;
-        max-width: 500px;
-        height: 500px;
+        max-width: 350px;
+        height: 350px;
       }
     }
   </style>
@@ -49,90 +60,74 @@
 
   <div class="container">
     <!-- Form -->
-    <div class="form-container bg-white p-8 rounded-3xl shadow-lg max-w-md w-full">
+    <div class="form-container bg-white p-8 rounded-3xl shadow-xl max-w-lg w-full border-4  border-red-700">
       <!-- Logo Section -->
-<div class="flex justify-center mb-6">
-  <img src="./images/logo3-removebg-preview.png" alt="Company Logo" class="w-34 h-24 md:w-39 md:h-32 object-contain">
-</div>
+      <div class="flex justify-center mb-6">
+        <img src="./images/logo3-removebg-preview.png" alt="Company Logo" class="w-34 h-24 md:w-39 md:h-32 object-contain">
+      </div>
 
       <h2 class="text-3xl font-bold text-red-800 mb-6 text-center"> Book a Call</h2>
       <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
         <!-- Web3Forms Access Key -->
         <input type="hidden" name="access_key" value="6a4b6799-5b28-49f1-a239-311cd8e932ed" />
 
-        <div class="mb-4">
-          <label for="name" class="block text-sm ml-3 font-semibold text-gray-600">Full Name</label>
-          <input type="text" id="name" name="name" required placeholder="John Doe" 
-            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm" />
+        <!-- Desktop: Inputs side by side -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Left Column -->
+          <div>
+            <label for="name" class="block text-sm ml-3 font-semibold text-gray-600">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe" 
+              class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-red-600 focus:outline-none shadow-sm" />
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <label for="email" class="block text-sm ml-3 font-semibold text-gray-600">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="john.doe@example.com" 
+              class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-red-600 focus:outline-none shadow-sm" />
+          </div>
+
+          <!-- Left Column -->
+          <div>
+            <label for="phone" class="block text-sm ml-3 font-semibold text-gray-600">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="123-456-7890" 
+              class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-red-600 focus:outline-none shadow-sm" />
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <label for="preferred-date" class="block ml-3 text-sm font-semibold text-gray-600">Preferred Date for Meeting</label>
+            <input type="date" id="preferred-date" name="preferred_date" required
+              class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-red-600 focus:outline-none shadow-sm" />
+          </div>
         </div>
 
-        <div class="mb-4">
-          <label for="email" class="block text-sm ml-3 font-semibold text-gray-600">Email Address</label>
-          <input type="email" id="email" name="email" required placeholder="john.doe@example.com" 
-            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm" />
-        </div>
-
-        <div class="mb-4">
-          <label for="product" class="block text-sm ml-3 font-semibold text-gray-600">Select Product</label>
-          <select id="product" name="product_want" required 
-            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm">
-            <option value="" disabled selected>Select the product</option>
-            <option value="Digital Strategy & Consulting">Digital Strategy & Consulting</option>
-            <option value="Search Engine Optimization (SEO)
-            ">Search Engine Optimization (SEO)
-            </option>
-            <option value="Social Media Marketing
-            ">Social Media Marketing
-            </option>
-            <option value="Web Design & Development
-            ">Web Design & Development
-            </option>
-            <option value="Social Media & PR">Social Media & PR</option>
-            <option value="Content Marketing
-            ">Content Marketing
-            </option>
-            <option value="none">None</option>
-          </select>
-        </div>
-        
-        <div class="mb-4">
-          <label for="phone" class="block text-sm ml-3 font-semibold text-gray-600">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required placeholder="123-456-7890" 
-            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm" />
-        </div>
-
-        <div class="mb-4">
-          <label for="preferred-date" class="block ml-3 text-sm font-semibold text-gray-600">Preferred Date for meeting</label>
-          <input type="date" id="preferred-date" name="preferred_date" required
-            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm" />
-        </div>
-
-        <!-- Message Field -->
-        <div class="mb-4">
+        <!-- Message Field (Centered in Desktop View) -->
+        <div class="mt-6">
           <label for="message" class="block text-sm ml-3 font-semibold text-gray-600">Message</label>
           <textarea id="message" name="message" required placeholder="Enter your message here..." 
-            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm h-24"></textarea>
+            class="mt-1 p-3 w-full border border-gray-300 rounded-3xl focus:ring-2 focus:ring-red-600 focus:outline-none shadow-sm h-24"></textarea>
         </div>
 
         <!-- Success Message -->
         <p id="success-message" class="hidden text-green-600 text-sm text-center mb-3">✅ Your request has been submitted!</p>
 
-        <button type="submit" class="bg-gradient-to-r from-red-600 to-red-900 text-white py-3 px-6 rounded-3xl w-full text-lg font-semibold shadow-md hover:opacity-90 transition duration-300">
+        <button type="submit" class="bg-gradient-to-r from-orange-700 to-red-900 text-white py-3 px-6 rounded-3xl w-full text-lg font-semibold shadow-md hover:opacity-90 transition duration-300 mt-4">
           Book a Call
-      </button>
-      
+        </button>
       </form>
     </div>
 
     <!-- 3D Model -->
     <model-viewer 
       id="model"
-      src="./images/3d.glb"
+      src="./3d/3d2.glb"
       alt="3D Model"
+      autoplay
       disable-zoom
       camera-controls
       interaction-prompt="none"
-      class="w-full md:w-[400px] md:h-[400px]">
+      class="w-full  md:w-[800px] md:h-[800px]">
     </model-viewer>
   </div>
 

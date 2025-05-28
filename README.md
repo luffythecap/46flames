@@ -1,6 +1,6 @@
-# 🚀 46flames – Digital Marketing Website
+# 🚀 49frames – Digital Marketing and Website development webpage 
 
-Welcome to **46flames**!  
+Welcome to **49frames**!  
 A modern, responsive digital marketing website built with **HTML**, **Tailwind CSS**, and **JavaScript**.
 
 ---
